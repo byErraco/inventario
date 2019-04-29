@@ -1,0 +1,56 @@
+.form-titulo {
+	background-color: var(--azul);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+.form {
+	width: 100%;
+	margin-bottom: 14px;
+}
+
+.form-control:disabled {
+	border: none;
+	background: none;
+}
+
+.form.subform .form-titulo {
+	font-weight: bold;
+	background: inherit;
+	color: inherit;
+	margin-right: 40px;
+}
+
+.form.subform .subform-titulo {
+	color: var(--color-principal);
+	font-weight: bold;
+}
+
+.table-forms {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	grid-auto-rows: min-content max-content;
+	grid-row-gap: 14px;
+}
+
+.table-forms > div {
+	padding-top: 14px;
+}
+
+.table-forms .form-titulo {
+	padding-right: 40px;
+	margin-right: 0 !important;
+	text-align: left;
+}
+
+.table-forms .subform-titulo {
+	padding-right: 20px;
+	margin-right: 0 !important;
+	text-align: left;
+}
+
+.table-form-titulo {
+	background-color: var(--azul);
+	color: white;
+}

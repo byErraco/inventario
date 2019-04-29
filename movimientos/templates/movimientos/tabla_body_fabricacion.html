@@ -1,0 +1,26 @@
+<tbody id="tabla-body">
+	{% for object in object_list %}
+	<tr>
+		<td>{{object.id}}</td>
+		<td>{{object.lote_produccion.codigo}}</td>
+		<td>{{object.almacen_produccion}}</td>
+		<td>{{object.lote_produccion.producto}}</td>
+		<td>{{object.cantidad_produccion}}</td>
+		<td>{{object.lote_produccion.fecha_produccion}}</td>
+		<td>{% if object.lote_produccion.fecha_vencimiento %}{{object.lote_produccion.fecha_vencimiento}}{% else %}Ninguna{% endif%}</td>
+		<td>{{object.fecha_creacion}}</td>
+		<td>{{object.fecha_ultima_modificacion}}</td>
+		<td>
+			{% with object_forms_list|dict_key:object.id|dict_key:'Eliminar' as form %}
+				{% if form %}
+					<form method="POST" class="eliminar-form" id="id_{{object.id}}_eliminar-form">
+						{% csrf_token %}
+						{{form}}
+						<input class="btn btn-eliminar24 shadow-none" type="submit" name="{{form.nombre_form}}">
+					</form>
+				{% endif %}
+			{% endwith %}
+		</td>
+	</tr>
+	{% endfor %}
+</tbody>

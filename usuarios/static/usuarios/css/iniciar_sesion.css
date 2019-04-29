@@ -1,0 +1,108 @@
+main {
+	background-image: url("/static/img/fondo.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    display: -webkit-box;      
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;
+    align-items: center;
+    padding-top: 50px;
+}
+
+#id_grid_card {
+	align-self: center;
+    grid-column: 2 / 3;
+    grid-row: 5 / 8;
+}
+
+#id_grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(50px, 248px) minmax(180px, 310px) minmax(50px, 107px) 1fr;
+    grid-template-rows: 10px auto 10px 48px auto 40px 84px minmax(85px, 1fr) minmax(50px, 1fr);
+}
+
+#id_grid_bienvenida {
+    background-color: var(--color-principal);
+    color: white;
+    font-size: 20px;
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+    align-self: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 50px;
+}
+
+#id_grid_empresas_fondo {
+    grid-area: 7 / 1 / 9 / 4;
+    background-color: rgba(255, 255, 255, 0.80);
+}
+
+#id_grid_empresas {
+    grid-area: 7 / 4 / 9 / 5;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.80);
+    
+    display: flex;
+    display: -webkit-box;      
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;
+
+    flex-direction: column;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: nowrap;
+}
+
+#id_empresas {
+    max-width: 555px;
+}
+
+#id_img_empresas {
+    display: grid;
+    grid-template: 1fr/ 1fr 1fr 1fr;
+    justify-items: center;
+    padding-top: 15px;
+    padding-bottom: 14px;
+    border-bottom: 4px solid var(--color-principal);
+}
+
+#id_img_empresas img {
+    width: 30%; 
+    height: auto;
+}
+
+#id_texto_empresas {
+    padding-top: 16px;
+}
+
+#id_grid_puntos_empresas {
+    grid-row: 6 / 10;
+    grid-column: 1 / 5;
+}
+
+#id_grid_puntos_bienvenida {
+    grid-row: 1 / 4;
+    grid-column: 1 / 2;
+    padding-top: -10px;
+}
+
+@media only screen and (max-width: 768px) {
+    #id_grid_empresas_fondo {
+        grid-area: 7 / 1 / 8 / 6;
+    }
+
+    #id_grid_empresas {
+        grid-area: 8 / 1 / 9 / 6;
+        align-items: center;
+    }
+
+    #id_grid_bienvenida {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+}

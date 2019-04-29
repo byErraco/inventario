@@ -1,0 +1,34 @@
+<tbody id="tabla-body">
+	{% for object in object_list %}
+	<tr>
+		<td>{{object.unidad_inventario.control_stock.almacen}}</td>
+		<td>{{object.unidad_inventario.control_stock.producto}}</td>
+		<td>{% if object.unidad_inventario.lote_produccion %}{{object.unidad_inventario.lote_produccion.codigo}}{% else %}Ninguno{% endif %}</td>
+		<td>{{object.proveedor}}</td>
+		<td>{{object.cantidad}}</td>
+		<td>{{object.costo_unidad}}</td>
+		<td>
+			{% if object.costos.all %}
+				{% for costo_adicional in object.costos.all %}
+					{{costo_adicional.descripcion}}: {{costo_adicional.cantidad}}</br>
+				{% endfor %}
+			{% else %}
+				Ninguno
+			{% endif %}
+		</td>
+		<td>{{object.fecha_creacion}}</td>
+		<td>{{object.fecha_ultima_modificacion}}</td>
+		<td>
+			{% with object_forms_list|dict_key:object.id|dict_key:'Eliminar' as form %}
+				{% if form %}
+					<form method="POST" class="eliminar-form" id="id_{{object.id}}_eliminar-form">
+						{% csrf_token %}
+						{{form}}
+						<input class="btn btn-eliminar24 shadow-none" type="submit" name="{{form.nombre_form}}">
+					</form>
+				{% endif %}
+			{% endwith %}
+		</td>
+	</tr>
+	{% endfor %}
+</tbody>

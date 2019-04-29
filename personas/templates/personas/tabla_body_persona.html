@@ -1,0 +1,31 @@
+<tbody id="tabla-body">
+	{% for object in object_list %}
+	<tr>
+		<td>{{object.nombre}}</td>
+		<td>{% if object.apellido %}{{object.apellido}}{% else %}Ninguno{% endif %}</td>
+		<td>{{object.tipo|add:'-'|add:object.numero_identificacion}}</td>
+		<td>{% if object.direccion %}{{object.direccion}}{% else %}Ninguna{% endif %}</td>
+		<td>{% if object.telefono %}{{object.telefono}}{% else %}Ninguno{% endif %}</td>
+		<td>{% if object.email %}{{object.email}}{% else %}Ninguno{% endif %}</td>
+		<td>{% if object.twitter %}{{object.twitter}}{% else %}Ninguno{% endif %}</td>
+		<td>{% if object.facebook %}{{object.facebook}}{% else %}Ninguno{% endif %}</td>
+		<td>{% if object.instagram %}{{object.instagram}}{% else %}Ninguno{% endif %}</td>
+		<td>{% if object.representante %}{{object.representante}}{% else %}Ninguno{% endif %}</td>
+		<td>{{object.fecha_creacion}}</td>
+		<td>{{object.fecha_ultima_modificacion}}</td>
+		<td>
+			{% with object_forms_list|dict_key:object.id as object_forms %}
+				{% if object_forms %}
+					{% with object_forms|dict_key:'Eliminar' as form %}
+						<form method="POST" class="eliminar-form" id="id_{{object.id}}_eliminar-form">
+							{% csrf_token %}
+							{{form}}
+							<input class="btn btn-eliminar24 shadow-none" type="submit" name="{{form.nombre_form}}">
+						</form>
+					{% endwith %}
+				{% endif %}
+			{% endwith %}
+		</td>
+	</tr>
+	{% endfor %}
+</tbody>

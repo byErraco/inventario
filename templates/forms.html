@@ -1,0 +1,51 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+<div id="data-form">
+{% if form %}
+	<div class="form">
+		{% include "base_form.html" with texto_boton_form='Crear' %}
+	</div>
+{% endif %}
+{% for form in forms %}
+	{% if form.management_form %}
+		<div class="formset border-top border-gris">
+			{{form.management_form}}
+			
+			<div class="d-inline-flex form subform mt-4">
+				{% if form.titulo_form %}
+					<div class="form-titulo">{{ form.titulo_form.capitalize }}</div>
+				{% endif %}
+				
+				<div>
+					{% for sub_form in form.forms %}
+						<div class="formset-form">
+						  	{% include "base_form.html" with form=sub_form no_titulo=True %}
+						</div>
+					{% endfor %}
+				</div>
+
+				{% if form.total_form_count < form.max_num %}
+					<div class="align-self-end pb-4">
+					    {{ texto_boton_form.capitalize }}
+					    <button type="button" value="{% if form.texto_boton %}{{form.texto_boton}}{% else %}Añadir {{form.prefix}}{% endif %}" class="btn btn-agregar24 btn-block shadow-none añadir" name="{{form.prefix|add:'-añadir'}}">
+					    </button>
+					</div>
+				{% endif %}
+			</div>
+
+			{% if form.non_form_errors %}
+				<div>{{form.non_form_errors}}</div>
+			{% endif %}
+		</div>
+	{% else %}
+		<div class="form">
+			{% if texto_boton_form == None %}
+				{% include "base_form.html" with texto_boton_form='Guardar' %}
+			{% else %}
+				{% include "base_form.html" %}
+			{% endif %}
+		</div>
+	{% endif %}
+{% endfor %}
+</div>

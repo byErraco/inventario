@@ -1,0 +1,14 @@
+<tbody id="tabla-body">
+	{% for object in object_list %}
+	<tr>
+		<td>{{object.unidad_inventario.control_stock.almacen}}</td>
+		<td>{{object.unidad_inventario.control_stock.producto}}</td>
+		<td>{% if object.unidad_inventario.lote_produccion %}{{object.unidad_inventario.lote_produccion.codigo}}{% else %}Ninguno{% endif %}</td>
+		<td>{{object.cantidad}}</td>
+		<td>{{object.venta.id}}</td>
+		<td>{{object.venta.estado_str.capitalize}}</td>
+		<td>{{object.fecha_creacion}}</td>
+		<td>{{object.fecha_ultima_modificacion}}</td>
+	</tr>
+	{% endfor %}
+</tbody>

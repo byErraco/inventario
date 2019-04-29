@@ -1,0 +1,20 @@
+.card-transparente {
+	background-color: rgba(255, 255, 255, 0.95);
+	box-shadow: 3px 3px 3px DimGrey;
+}
+
+.card-title {
+	font-weight: bold;
+}
+
+.btn {
+	background-color: var(--color-principal);
+}
+
+.input-group-prepend ~ .form-control{
+	border-color: var(--color-principal);
+}
+
+.input-group-text {
+	border-color: var(--color-principal);
+}

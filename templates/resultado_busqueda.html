@@ -1,0 +1,24 @@
+<div id="id_div_resultado_busqueda">
+	<div id="ninguno" style="display: none;"> No se encontraron resultados </div>
+
+	<div id="resultados" style="display: none;">
+		<div class="table-responsive">
+			<table class="table table-striped table-borderless table-sm">
+				<thead>
+					{% include app|add:'/tabla_'|add:modelo|add:'.html' %}
+				</thead>
+							
+				<tbody id="tabla-body">
+				</tbody>
+			</table>
+		</div>
+		
+		<ul id="paginador" class="pagination justify-content-end">
+			<li class="page-item"><button id="primera" class="page-link" value="1">|<</button></li>
+			<li class="page-item"><button id="anterior" class="page-link"></button></li>
+			<li class="page-item"><button id="actual" class="page-link" value="1"></button></li>
+			<li class="page-item"><button id="siguiente" class="page-link"></button></li>
+			<li class="page-item"><button id="ultima" class="page-link">>|</button></li>
+	  	</ul>
+	</div>
+</div>

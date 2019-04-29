@@ -1,0 +1,56 @@
+{% load widget_tweaks %}
+
+{% for hidden_field in form.hidden_fields %}
+    {{ hidden_field.errors }}
+    {{ hidden_field }}
+{% endfor %}
+
+<table class="table table-borderless table-sm">
+  {% if form.titulo_form %}
+  <tr>
+    <th class="table-form-titulo">{{ form.titulo_form.capitalize }}</th>
+    <td></td>
+  </tr>   
+  {% elif titulo_form %}
+  <tr>
+    <th class="table-form-titulo">{{ titulo_form.capitalize }}</th>
+    <td></td>
+  </tr>
+  {% endif %}
+
+  {% for field in form.visible_fields %}
+  <tr class="form-group">
+    <th>{{ field.label }}</th>
+    <td>
+      {{ field.errors }}
+      {% if field.field.widget.input_type == 'checkbox' %}
+        {{ field }}
+      {% else %}
+        {% render_field field class="form-control form-control-sm" %}
+      {% endif %}
+      {{ field.help_text }}
+    </td>
+  </tr>  
+  {% endfor %}
+
+{% if texto_boton_form %}
+<tr>
+    <th>{{ texto_boton_form.capitalize }}</th>
+    <td>
+      <button class="btn btn-guardar btn-block shadow-none" type="submit" {% if name_boton_form %}name="{{name_boton_form}}"{% else %}name="{{form.nombre_form}}"{% endif %}></button>
+    </td>
+</tr>
+{% endif %}
+
+{% if success %}
+  <tr class="form-group">
+    <th>Resultado</th>
+    <td>
+       <div id="success">{{success}}</div>
+    </td>
+  </tr>
+{% endif %}
+</table>
+
+{{ form.non_field_errors }}
+

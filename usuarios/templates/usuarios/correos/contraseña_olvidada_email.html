@@ -1,0 +1,7 @@
+{% autoescape off %}
+Para cambiar su contraseña de {{ site_name }} haga clic en el siguiente enlace:
+
+{{ protocol }}://{{ domain }}{% url 'usuarios:reiniciar_contraseña' uidb64=uid token=token %}
+
+Si hacer clic no funciona, por favor copie y pegué el enlace en su navegador.
+{% endautoescape %}

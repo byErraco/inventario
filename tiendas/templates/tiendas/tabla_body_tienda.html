@@ -1,0 +1,10 @@
+<tbody id="tabla-body">
+	{% for object in object_list %}
+	<tr>
+		<td>{{object.nombre}}</td>
+		<td>{% if object.direccion %}{{object.direccion}}{% else %}Ninguna{% endif %}</td>
+		<td>{{object.fecha_creacion}}</td>
+		<td>{{object.fecha_ultima_modificacion}}</td>
+	</tr>
+	{% endfor %}
+</tbody>

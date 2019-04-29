@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'usuarios/css/mensaje.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'usuarios/css/card.css' %}">
+{% endblock %}
+
+{% block titulo %}
+	Contraseña establecida
+{% endblock %}
+
+{% block contenido %}
+  <div id="id_card_mensaje" class="card card-transparente text-center rounded">
+    <div class="card-body">
+      <div class="card-title">Reiniciar contraseña</div>
+      <p class="card-text">
+        Su nueva contraseña ha sido establecida. Ahora puede <a class="card-link" href="{% url 'usuarios:iniciar_sesion' %}">iniciar sesión</a>.
+      </p>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'usuarios/css/mensaje.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'usuarios/css/card.css' %}">
+{% endblock %}
+
+{% block titulo %}
+	Olvidé mi contraseña
+{% endblock %}
+
+{% block contenido %}
+  <div id="id_card_mensaje" class="card card-transparente text-center rounded">
+    <div class="card-body">
+      <div class="card-title">Olvidé mi contraseña</div>
+
+      <p class="card-text">Por favor ingresa tu dirección de correo electrónico</p>
+
+      <form method="post">
+        	{% csrf_token %}
+        	{{ form.non_field_errors }}
+        	
+        	<div class="input-group">
+        	  <div class="input-group-prepend">
+        	    <span class="input-group-text" id="id_email_icon"><i class="fa fa-at"></i></span>
+        	  </div>
+        	  {% render_field form.email class="form-control" aria-describedby="id_email_icon" %}
+        	  {{ form.email.errors }}
+        	</div>
+
+        	<button class="btn btn-md btn-block shadow-none text-capitalize font-weight-bold my-4" type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

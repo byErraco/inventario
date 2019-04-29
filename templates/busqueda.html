@@ -1,0 +1,17 @@
+{% load staticfiles %}
+
+{% url app|add:":reporte_"|add:modelo as reporte_url %}
+
+<form method="GET" action="{{reporte_url}}">
+	<div id="id_field_busqueda m-0">
+	  	<div id="id_filter_form">
+			{% include "busqueda_form.html" with form=filter_form %}
+	  	</div>
+	  	<div>
+	  		{% if reporte_url %}
+	  			<button name="excel" type="submit" class="btn-excel"></button>
+	  		{% endif %}
+	  	</div>
+	</div>
+</form>
+

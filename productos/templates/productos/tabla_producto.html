@@ -1,0 +1,19 @@
+<tr>
+	<th scope="col">Código</th>
+	<th scope="col">Descripción</th>
+	<th scope="col">Unidad</th>
+	<th scope="col">Balanza</th>
+	<th scope="col">Pre-fabricado</th>
+	<!--
+	<th scope="col">Límite de venta</th>
+	<th scope="col">Periodo de límite</th>
+	-->
+	<th scope="col">Seguimiento</th>
+	<th scope="col">Última compra</th>
+	<th scope="col">Fecha de creación</th>
+	<th scope="col">Fecha de modificación</th>
+	{% if perms.almacenes.view_unidadinventario %}
+	<th scope="col">Cantidad disponible</th>
+	{% endif %}
+	<th scope="col"></th>
+</tr>

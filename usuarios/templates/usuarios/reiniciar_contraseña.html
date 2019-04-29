@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'usuarios/css/mensaje.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'usuarios/css/card.css' %}">
+{% endblock %}
+
+{% block titulo %}
+  Reiniciar contraseña
+{% endblock %}
+
+{% block contenido %}
+  <div id="id_card_mensaje" class="card card-transparente text-center rounded">
+    <div class="card-body">
+      <div class="card-title ">Reiniciar contraseña</div>
+      
+      <p class="card-text">
+          Ingrese su nueva contraseña
+      </p>
+
+      {% if validlink %}
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            
+            <div class="input-group pb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="id_new_password1_icon"><i class="fa fa-lock"></i></span>
+              </div>
+              {% render_field form.new_password1 class="form-control" aria-describedby="id_new_password1_icon" %}
+              {{ form.new_password1.errors }}
+            </div>
+            <div class="card-text text-justify">
+              {{ form.new_password1.help_text|safe }}
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="id_new_password2_icon"><i class="fa fa-lock"></i></span>
+              </div>
+              {% render_field form.new_password2 class="form-control" aria-describedby="id_new_password2_icon" %}
+              {{ form.new_password2.errors }}
+            </div>
+
+            <button class="btn btn-md btn-block shadow-none text-capitalize font-weight-bold my-4" type="submit">Enviar</button>
+        </form>
+      {% else %}
+        <p class="card-text text-justify">
+          El enlace es inválido, posiblemente porque ya ha sido utilizado.
+          Por favor solicita un nuevo enlace.
+        </p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

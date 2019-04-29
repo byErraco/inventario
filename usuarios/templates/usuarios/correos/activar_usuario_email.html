@@ -1,0 +1,6 @@
+{% autoescape off %}
+Hola {{ user.get_full_name }}, usted ha sido registrado en {{ site_name }}.
+
+Por favor haga clic en el siguiente enlace para activar su cuenta y crear su contraseña,
+http://{{ domain }}{% url 'usuarios:activar' uidb64=uid token=token %}
+{% endautoescape %}

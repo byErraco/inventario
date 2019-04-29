@@ -1,0 +1,61 @@
+{% load staticfiles %}
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light white shadow-none">
+
+    <!-- Navbar brand -->
+    <img class="navbar-brand" src="{% static '/img/logo.png'%}">
+	
+	{% if user.is_authenticated %}
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-navicon"></i>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="menu">
+
+        <!-- Links -->
+        <ul class="navbar-nav mx-auto text-center">
+			{% for url in urls %}
+				{% if url.url %}
+					<li class="nav-item">
+                		<a class="nav-link {{url.active}}" href="{{url.url}}">{{url.text}}</a>
+            		</li>
+				{% elif url.urls %}
+					<li class="nav-item dropdown">
+		                <a class="nav-link {{url.active}} dropdown-toggle" id="navbarDropdown{{url.text}}Link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{url.text}}</a>
+		                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdown{{url.text}}Link">
+		                    {% for sub_url in url.urls %}
+								<a class="dropdown-item {{sub_url.active}}" href="{{sub_url.url}}">{{sub_url.text}}</a>
+							{% endfor %}
+		                </div>
+		            </li>
+				{% endif %}
+			{% endfor %}
+        </ul>
+        <!-- Links -->
+		
+		<ul class="navbar-nav flex-row justify-content-center flex-nowrap mt-3">
+			<li class="nav-item">
+				<span class="navbar-text"><i id="id_i_user" class="align-baseline fa fa-lg fa-user color-principal"></i>
+				</span>
+			</li>
+		    <li class="nav-item pl-3">
+		        <div>
+		        	<span class="navbar-text">{{ user.get_full_name }}</span>
+		        </div>
+		        <span id="fecha" class="navbar-text font-sm p-0"></span>
+		    </li>
+		</ul>
+		
+	    <a class="nav-item nav-link text-center" href="{% url 'usuarios:cerrar_sesion' %}"><img src="{% static 'img/iconos/32/salida.png' %}" height="18" width="18" class="align-baseline"></a>
+
+    </div>
+    <!-- Collapsible content -->
+    {% endif %}
+</nav>
+<!--/.Navbar-->
+

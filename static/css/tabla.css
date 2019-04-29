@@ -1,0 +1,67 @@
+#id_field_busqueda {
+	max-width: 347px;
+	margin-left: 14px;
+	margin-right: 14px;
+}
+
+#id_a_crear {
+	color: var(--color-texto);
+}
+
+#id_div_resultado_busqueda {
+	display: flex;
+	display: -webkit-box;      
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;
+	flex-flow: column;
+	width: 100%;
+ 	align-self: start;
+ 	padding-top: 24px;
+ 	padding-left: 51px;
+ 	padding-right: 51px;
+}
+
+table a:visited, table a:link {
+	color: var(--color-texto);
+}
+
+table a:hover {
+	color: var(--color-principal);
+	font-weight: bold;
+}
+
+.table-borderless td, .table-borderless th {
+    border: none;
+}
+
+.table-striped > tbody > tr:nth-child(even) > td, .table-striped > tbody > tr:nth-child(even) > th {
+   	background-color: white;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+	background-color: var(--color-secundario);
+}
+
+thead {
+	background-color: var(--azul);
+	color: white;
+}
+
+#paginador {
+	padding-top: 24px;
+}
+
+#actual, #primera, #ultima{
+	background-color: var(--azul);
+	color: white;
+}
+
+#anterior, #siguiente{
+	color: var(--azul);
+	background-color: white;
+}
+
+.pdl-6 {
+	padding-left: 6px;
+}

@@ -1,0 +1,12 @@
+{% load staticfiles %}
+
+<tbody id="tabla-body">
+	{% for object in object_list %}
+	<tr>
+		<td>{{object.unidad_inventario.control_stock.producto}}</td>
+		<td>{% if object.unidad_inventario.lote_produccion.codigo %}{{object.unidad_inventario.lote_produccion.codigo}}{% else %}Ninguno{% endif %}</td>
+		<td>{{object.cantidad_producto}} {% if object.unidad_inventario.control_stock.producto.unidad %}{{object.unidad_inventario.control_stock.producto.unidad.descripcion}}{% else %}{% if object.cantidad_producto == 1 %}unidad{% else %}unidades{% endif %}{% endif %}</td>
+		<td>{{object.cantidad_sistema}}</td>		
+	</tr>
+	{% endfor %}
+</tbody>

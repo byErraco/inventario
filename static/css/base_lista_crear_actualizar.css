@@ -1,0 +1,113 @@
+#id_titulo {
+	background-color: var(--color-secundario);
+	color: var(--color-texto);
+	display: flex;
+	display: -webkit-box;      
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;
+	align-items: flex-end;
+	padding-left: 51px;
+ 	padding-right: 51px;
+ 	padding-bottom: 14px;
+ 	height: 99px;
+}
+
+#id_titulo div {
+	display: flex;
+	display: -webkit-box;      
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;
+	align-items: center;
+	font-weight: bold;
+}
+
+#id_titulo div img{
+	margin-right: 15px;
+}
+
+#id_contenido {
+	background-color: var(--color-contenido);
+	padding-left: 51px;
+ 	padding-right: 51px;
+ 	padding-top: 14px;
+}
+
+#id_borde_contenido {
+ 	border-top: 1px solid var(--gris);
+ 	border-bottom: 1px solid var(--gris);
+ 	padding-top: 15px;
+ 	padding-bottom: 15px;
+
+ 	display: flex;
+	flex-direction: column;
+}
+
+.border-gris {
+	border-color: var(--gris) !important;
+}
+
+#id_grid {
+	height: 100%;
+
+	display: flex;
+	display: -webkit-box;      
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;     
+	
+	flex-direction: column;
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+}
+
+#id_grid_funcion {
+	min-height: 155px;
+	display: flex;
+	display: -webkit-box;      
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#id_borde_funcion {
+	align-self: center;
+	flex-grow: 1;
+}
+
+#form {
+	width: 100%;
+}
+
+#data-form {
+	display: flex;
+	display: -webkit-box;      
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+}
+
+#data-form .formset , #data-form {
+	flex-grow: 1;
+}
+
+.formset {
+	height: 100%;
+}
+
+#id_grid_acciones {
+  	padding-top: 14px;
+  	padding-bottom: 14px;
+  	padding-right: 51px;
+  	display: flex;
+	display: -webkit-box;      
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;
+  	justify-content: flex-end;
+}

@@ -1,0 +1,46 @@
+{% load staticfiles %}
+
+<tbody id="tabla-body">
+	{% for object in object_list %}
+	<tr>
+		<td>{{object.id}}</td>
+		<td>{% if object.control_stock.almacen.tienda.nombre %}{{object.control_stock.almacen.tienda.nombre}}{% else %}Ninguna{% endif %}</td>
+		<td>{{object.almacen}}</td>
+		<td>{{object.control_stock.producto}}</td>
+		<td>
+			{% if object.lote_produccion %}
+				Código: 
+				{{object.lote_produccion.codigo}}
+				{% if object.lote_produccion.fecha_produccion %}
+					</br>
+					Fecha de producción: 
+					{{object.lote_produccion.fecha_produccion}}
+				{% endif %}
+				{% if object.lote_produccion.fecha_vencimiento %}
+					</br>
+					Fecha de vencimiento: 
+					{{object.lote_produccion.fecha_vencimiento}}
+				{% endif %}
+			{% else %}
+			Ninguno
+			{% endif %}
+		</td>
+		<td>{{object.cantidad_producto}} {% if object.control_stock.producto.unidad %}{{object.control_stock.producto.unidad.descripcion}}{% else %}{% if object.cantidad_producto == 1 %}unidad{% else %}unidades{% endif %}{% endif %}</td>
+		<td>
+			Precio: {% if object.precio_actual.precio_venta_publico %}{{object.precio_actual.precio_venta_publico}}{% else %}Ninguno{% endif %}
+			</br>
+			Base imponible: {% if object.precio_actual.base_imponible %}{{object.precio_actual.base_imponible}}{% else %}Ninguna{% endif %}
+			</br>
+			Ganancia %: {% if object.precio_actual.margen_ganancia %}{{object.precio_actual.margen_ganancia}}{% else %}Ninguno{% endif %}
+			</br>
+			Impuesto %: {% if object.precio_actual.porcentaje_impuesto %}{{object.precio_actual.porcentaje_impuesto}}{% else %}Ninguno{% endif %}
+			</br>
+			Exento: {{object.precio_actual.exento|yesno:"Si, No"}}
+		</td>
+		<td>{{object.fecha_creacion}}</td>
+		<td>{{object.fecha_ultima_modificacion}}</td>
+		{% endfor %}
+	</tr>
+
+
+</tbody>

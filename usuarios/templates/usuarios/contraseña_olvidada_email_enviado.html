@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'usuarios/css/mensaje.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'usuarios/css/card.css' %}">
+{% endblock %}
+
+{% block titulo %}
+	Correo enviado
+{% endblock %}
+
+{% block contenido %}
+	<div id="id_card_mensaje" class="card card-transparente text-justify rounded">
+	  <div class="card-body">
+	    <div class="card-title text-center">Olvidé mi contraseña</h1></div>
+
+	    <p class="card_text">
+	    	Se han enviado instrucciones para reiniciar su contraseña a su correo electrónico.
+	    </p>
+	    <p class="card_text">
+	    	Si no recibe un mensaje pronto, por favor asegúrese de haber ingresado el correo electrónico con el que se registró y revise su carpeta de correos no deseados.
+	    </p>
+	  </div>
+	</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base_lista_crear_actualizar.html' %}
+
+{% load staticfiles %}
+
+{% block form %}
+	{% if no_obtener_form %}
+	{% include 'forms.html'%}
+	{% else %}
+	{% include 'forms.html' with texto_boton_form='Crear' %}
+	{% endif %}
+{% endblock %}
+
+{% block javascript-extra %}
+	<script type="text/javascript"> 
+		var url = "{{request.path}}"
+		{% if no_obtener_form %}
+			var noObtenerForm = true
+		{% endif %}
+		{% if form_no_ajax %} 
+			var noAjax = true
+		{% else %} 
+			var noAjax = false
+			var urlProcesar = url+"form/procesar"
+		{% endif %}
+		var urlForm = url+"form/obtener"
+		{% if can_view %} 
+			var urlLista = url+"?page="
+		{% else %} 
+			var urlLista = null
+		{% endif %}
+		var csrftoken = "{{ csrf_token }}"
+	</script>
+
+	<script type="text/javascript" src="{% static '/'|add:app|add:'/js/'|add:modelo|add:'.js' %}"></script>
+{% endblock %}
+
+

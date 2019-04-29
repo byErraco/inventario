@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base_contenido.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base_lista_crear_actualizar.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/tabla.css' %}">
+{% endblock %}
+
+{% block contenido %}
+	<div>
+		<div id="id_titulo">
+			<div>
+				{% if url_icono %}
+					<img src="{% static url_icono %}">
+				{% else %}
+					<img src="{% static 'img/iconos/48/agregar.png' %}">
+				{% endif %}
+				{% if titulo_form %}
+					{{ titulo_form.capitalize }}
+				{% else  %}
+					{{ titulo }}
+				{% endif %}
+			</div>
+		</div>
+
+		<div id="id_contenido">
+			<div id="id_borde_contenido">
+				{% if forms or form %}
+					<form method="POST" id="form">
+						{% csrf_token %}
+						{% block form %}
+							{% include 'forms.html' with texto_boton_form='Guardar' %}
+						{% endblock %}
+					</form>
+				{% endif %}
+
+				{% if can_view %}
+					<div>
+						{% include 'busqueda.html' %}
+					</div>
+				{% endif %}
+
+				<div>
+					{% if can_add %}
+						<a id="id_a_crear" href="{% url app|add:':crear_'|add:modelo %}"><img src="{% static 'img/iconos/32/agregar.png' %}"></a>
+					{% endif%}
+				</div>
+			</div>
+		</div>
+
+		{% if can_view %}{% include 'resultado_busqueda.html' %}{% endif %}
+	</div>
+{% endblock %}
+
+{% block javascript-extra %}
+	<script type="text/javascript"> 
+		var url = "{{request.path}}"
+		var urlProcesar = url
+		var urlForm = url
+		{% if can_view %} 
+			var urlLista = url+"?page="
+		{% else %} 
+			var urlLista = null
+		{% endif %}
+		var csrftoken = "{{ csrf_token }}"
+	</script>
+
+	<script type="text/javascript" src="{% static '/'|add:app|add:'/js/'|add:modelo|add:'.js' %}"></script>
+{% endblock %}
+
+

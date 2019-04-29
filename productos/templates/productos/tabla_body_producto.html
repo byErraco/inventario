@@ -1,0 +1,60 @@
+{% load staticfiles %}
+
+<tbody id="tabla-body">
+	{% for object in object_list %}
+	<tr>
+		<td>{{object.codigo_venta}}</td>
+		<td>{{object.descripcion}}</td>
+		<td>{% if object.unidad %}{{object.unidad}}{% else %}Unidad{% endif %}</td>
+		<td>{{object.balanza|yesno:"Si, No"}}</td>
+		<td>{{object.producto_pre_fabricado|yesno:"Si, No"}}</td>
+		<!--
+		<td>{% if object.limite_venta_persona %}{{object.limite_venta_persona}}{% else %}Ninguno{% endif %}</td>
+		<td>{% if object.periodo_venta_producto %}{{object.periodo_venta_producto_str.capitalize}}{% else %}Ninguno{% endif %}</td>
+		-->
+		<td>{% if object.seguimiento %}{{object.seguimiento_str.capitalize}}{% else %}Ninguno{% endif %}</td>
+		<td>
+			{% if object.ultima_compra %}
+				Costo por unidad: {{object.ultima_compra.costo_unidad}}
+				</br>
+				Costo adicional: {% if object.ultima_compra.costo_adicional %}{{object.ultima_compra.costo_adicional}}{% else %}Ninguno{% endif %}
+				</br>
+				Cantidad: {{object.ultima_compra.cantidad}}
+				</br>
+				Proveedor: {{object.ultima_compra.proveedor}}
+				</br>
+				Fecha: {{object.ultima_compra.fecha_creacion}}
+			{% else %}
+				Ninguna
+			{% endif %}
+		</td>
+		<td>{{object.fecha_creacion}}</td>
+		<td>{{object.fecha_ultima_modificacion}}</td>
+		{% if perms.almacenes.view_unidadinventario %}
+		<td>{{object.cantidad_disponible}}</td>
+		{% endif %}
+		<td>
+			<div class="d-inline-flex flex-row justify-content-center align-items-center">
+				{% if can_change %}
+					<div>
+						<a href="{% url 'productos:detalle_producto' slug=object.slug%}"><img src="{% static '/img/iconos/24/modificar.png' %}"></a>
+					</div>
+				{% endif %}
+				{% with object_forms_list|dict_key:object.id as object_forms %}
+					{% if object_forms %}
+						{% with object_forms|dict_key:'Eliminar' as form %}
+							<div>
+								<form method="POST" class="eliminar-form" id="id_{{object.id}}_eliminar-form">
+									{% csrf_token %}
+									{{form}}
+									<input class="btn btn-eliminar24 shadow-none" type="submit" name="{{form.nombre_form}}">
+								</form>
+							</div>
+						{% endwith %}
+					{% endif %}
+				{% endwith %}
+			</div>
+		</td>
+	</tr>
+	{% endfor %}
+</tbody>

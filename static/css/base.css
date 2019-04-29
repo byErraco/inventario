@@ -1,0 +1,205 @@
+:root {
+  --turquesa-oscuro: #2DB298;
+  --turquesa-medio: #BFE0D7;
+  --turquesa-claro: rgba(191, 224, 215, 0.3);
+  --azul: #334C72;
+  --gris: #999999;
+
+  --color-principal: var(--turquesa-oscuro);
+  --color-secundario: var(--turquesa-medio);
+  --color-contenido: white;
+  --color-fondo: var(--turquesa-claro);
+  --color-texto: var(--azul);
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    color: var(--color-texto);
+}
+
+body {
+	  font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
+    min-height: 100%;
+    display: flex;
+    display: -webkit-box;      
+    display: -moz-box;         
+    display: -ms-flexbox;      
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+main {
+    flex-grow: 1;
+    background-color: var(--color-fondo);
+}
+
+header, main, footer {
+    flex-shrink: 0;
+}
+
+footer {
+	background-color: var(--color-principal);
+  font-weight: bold;
+}
+
+footer .row {
+	min-height: 37px;
+}
+
+.navbar {
+  border-bottom: 5px solid var(--color-principal);
+	min-height: 82px;
+}
+
+.navbar-brand {
+  width: 120px;
+  height: auto;
+}
+
+.nav-link, .navbar-text, .navbar-toggler i{
+	color: var(--color-texto) !important;
+}
+
+.navbar-toggler i {
+  font-size: 30px;
+}
+
+.font-sm {
+  font-size: 12px;
+}
+
+.nav-link:hover, .navbar-item:hover{
+	color: var(--color-principal) !important;
+}
+
+.nav-link.active, .navbar-item.active, .dropdown-menu.show a.active{
+  color: var(--color-principal) !important;
+  font-weight: bold !important;
+  background-color: white;
+}
+
+.navbar .dropdown-menu a {
+	color: var(--color-texto) !important;
+}
+
+.navbar .dropdown-menu a:hover {
+	color: var(--color-principal) !important;
+	background-color: white !important;
+}
+
+.input-group-prepend ~ .form-control{
+	border-left: none;
+}
+
+.input-group-text {
+	border-right: none;
+	background-color: white;
+	color: var(--color-principal);
+}
+
+.borde-color-principal {
+	border-color: var(--color-principal);
+}
+
+.bg-color-principal {
+	background-color: var(--color-principal);
+}
+
+.color-principal {
+	color: var(--color-principal);
+}
+
+.btn-guardar {
+  background : url("/static/img/iconos/24/crear-guardar.png") no-repeat;
+  width: 24px;
+  height: 24px;
+  border: none;
+  font-size: 0;
+  padding: 0;
+}
+
+.btn-excel {
+  background : url("/static/img/iconos/32/exportar-excel.png") no-repeat;
+  width: 32px;
+  height: 32px;
+  border: none;
+  font-size: 0;
+  padding: 0;
+}
+
+.btn-guardar16 {
+  background : url("/static/img/iconos/24/crear-guardar.png") no-repeat;
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  border: none;
+  font-size: 0;
+  padding: 0;
+}
+
+.btn-eliminar24 {
+  background : url("/static/img/iconos/48/papelera.png") no-repeat;
+  background-size: 24px 24px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  font-size: 0;
+  padding: 0;
+}
+
+.btn-traslado24 {
+  background : url("/static/img/iconos/48/crear-traslado.png") no-repeat;
+  background-size: 24px 24px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  font-size: 0;
+  padding: 0;
+}
+
+.btn-agregar24 {
+  background : url("/static/img/iconos/32/agregar.png") no-repeat;
+  background-size: 24px 24px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  font-size: 0;
+  padding: 0;
+}
+
+.btn-agregar16 {
+  background : url("/static/img/iconos/16/agregar.png") no-repeat;
+  width: 16px;
+  height: 16px;
+  border: none;
+  font-size: 0;
+  padding: 0;
+}
+
+.btn-minimizar16 {
+  background : url("/static/img/iconos/16/minimizar.png") no-repeat;
+  width: 16px;
+  height: 16px;
+  border: none;
+  font-size: 0;
+  padding: 0;
+}
+
+.form-control:focus {
+  outline: none !important;
+  border: 3px solid var(--color-principal);
+  box-shadow: 0 0 0;
+}
+
+.bg-dotted {
+  padding: 2.25em 1.6875em;
+  background-image: -webkit-repeating-radial-gradient(center center, rgba(51, 76, 114, 0.8), transparent 1px, transparent 1px, transparent 100%);
+  background-image: -moz-repeating-radial-gradient(center center, rgba(51, 76, 114, 0.8), transparent 1px, transparent 1px, transparent 100%);
+  background-image: -ms-repeating-radial-gradient(center center, rgba(51, 76, 114, 0.8), transparent 1px, transparent 1px, transparent 100%);
+  background-image: repeating-radial-gradient(center center, rgba(51, 76, 114, 0.8), transparent 1px, transparent 1px, transparent 100%);
+  -webkit-background-size: 8px 8px;
+  -moz-background-size: 8px 8px;
+  background-size: 8px 8px;
+}

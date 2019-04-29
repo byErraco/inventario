@@ -1,0 +1,34 @@
+{% load staticfiles %}
+
+<tbody id="tabla-body">
+	{% for object in object_list %}
+	<tr>
+		<td>{{object.usuario_creacion}}</td>
+		<td>{{object.almacen}}</td>
+		<td>{{object.fecha_creacion}}</td>
+		<td>
+			<div class="d-inline-flex flex-row justify-content-center align-items-center">
+				<div>
+					<a href="{% url 'almacenes:detalle_inventario_fisico' id=object.id %}"><img src="{% static '/img/iconos/24/modificar.png' %}"></a>
+				</div>
+				<div class="pdl-6">
+					<a href="{% url 'almacenes:reporte_inventario_fisico' id=object.id%}?excel=excel"><img src="{% static '/img/iconos/32/exportar-excel.png' %}" width="24" height="24"></a>
+				</div>
+				{% with object_forms_list|dict_key:object.id as object_forms %}
+					{% if object_forms %}
+						{% with object_forms|dict_key:'Eliminar' as form %}
+							<div>
+								<form method="POST" class="eliminar-form" id="id_{{object.id}}_eliminar-form">
+									{% csrf_token %}
+									{{form}}
+									<input class="btn btn-eliminar24 shadow-none" type="submit" name="{{form.nombre_form}}">
+								</form>
+							</div>
+						{% endwith %}
+					{% endif %}
+				{% endwith %}
+			</div>
+		</td>
+	</tr>
+	{% endfor %}
+</tbody>

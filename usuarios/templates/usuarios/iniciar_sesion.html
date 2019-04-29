@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'usuarios/css/iniciar_sesion.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'usuarios/css/card.css' %}">
+{% endblock %}
+
+{% block titulo %}
+	Iniciar sesión
+{% endblock %}
+
+{% block contenido %}
+	<div id="id_grid" class="h-100">
+		  <div id="id_grid_bienvenida" class="text-center text-md-right">
+		  	Bienvenido al <span class="font-weight-bold">Sistema de Saphiro Inventario</span>
+		  </div>
+		  <div id="id_grid_puntos_bienvenida" class="bg-dotted"></div>
+		  <div id="id_grid_card">
+		    <div id="id_card_iniciar_sesion" class="card card-transparente text-center rounded">
+		      <div class="card-body">
+		        <div class="card-title">Saphiro Inventario</div>
+
+		        <p class="card-text">Por favor ingresa tu dirección de correo electrónico y contraseña</p>
+
+		        <form method="post" id="id_form_iniciar_sesion">
+		          	{% csrf_token %}
+		          	{{ form.non_field_errors }}
+		          	
+		          	<div class="input-group pb-3">
+		          	  <div class="input-group-prepend">
+		          	    <span class="input-group-text" id="id_username_icon"><i class="fa fa-user"></i></span>
+		          	  </div>
+		          	  {% render_field form.username class="form-control" aria-describedby="id_username_icon" %}
+		          	  {{ form.username.errors }}
+		          	</div>
+		          	<div class="input-group">
+		          	  <div class="input-group-prepend">
+		          	    <span class="input-group-text" id="id_password_icon"><i class="fa fa-lock"></i></span>
+		          	  </div>
+		          	  {% render_field form.password class="form-control" aria-describedby="id_password_icon" %}
+		          	  {{ form.password.errors }}
+		          	</div>
+
+		          	<button id="id_button_iniciar_sesion" class="btn btn-md btn-block shadow-none text-capitalize font-weight-bold my-4" type="submit">Inicio</button>
+		        </form>
+
+		        <div class="text-sm-right">
+		        	<small><i class="fa fa-question-circle text-danger"></i><a href="{% url 'usuarios:contraseña_olvidada' %}" class="card-link">¿Olvidaste la contraseña?</a></small>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		  <div id="id_grid_puntos_empresas" class="bg-dotted"></div>
+		  <div id="id_grid_empresas_fondo">
+		  </div>
+		  <div id="id_grid_empresas">
+		  	<div id="id_empresas">
+		  		<div id="id_img_empresas">
+		  			<img src="{% static '/img/pequeña-empresa.png' %}">
+		  			<img src="{% static '/img/mediana-empresa.png' %}">
+		  			<img src="{% static '/img/gran-empresa.png' %}">
+		  		</div>
+		  		<div id="id_texto_empresas" class="text-center">
+		  			Especial para <span class="font-weight-bold">pequeñas y medianas</span> empresas
+		  		</div>
+		  	</div>
+		  </div>
+	</div>
+{% endblock %}

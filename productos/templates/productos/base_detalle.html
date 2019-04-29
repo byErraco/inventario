@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base_contenido.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base_lista_crear_actualizar.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+{% endblock %}
+
+{% block titulo %}
+	{{object}}
+{% endblock %}
+
+{% block contenido %}
+	<div>
+		<div id="id_titulo">
+			<div>
+				{% if url_icono %}
+					<img src="{% static url_icono %}">
+				{% else %}
+					<img src="{% static 'img/iconos/48/agregar.png' %}">
+				{% endif %}
+				
+				{% if titulo_form %}
+					{{ titulo_form.capitalize }}
+				{% elif titulo %}
+					{{ titulo }}
+				{% else  %}
+					{{ object }}
+				{% endif %}
+			</div>
+		</div>
+
+		<div id="id_contenido">
+			<div id="id_borde_contenido">
+				<form method="POST">
+					{% csrf_token %}
+					{% include "base_form.html" with form=form texto_boton_form='Guardar' name_boton_form=form.nombre_form%}
+				</form>
+				
+				<div class="form subform table-forms mt-4">
+				{% for _, grupo_form in forms.items %}
+					<div class="border-top border-gris form-titulo">
+						{% if grupo_form.fields %}
+							{{ grupo_form.titulo_form.capitalize }}
+						{% else %}
+							{{ grupo_form.titulo.capitalize }}
+						{% endif %}
+					</div>
+					<div class="border-top border-gris">
+						<div>
+							{% if grupo_form.fields %}
+								<form method="POST">
+									{% csrf_token %}
+									{% include "base_form.html" with no_titulo=True form=grupo_form texto_boton_form='Crear' %}
+								</form>
+							{% else %}
+								{% if grupo_form.agregar %}
+									<form method="POST" class="d-inline-flex flex-wrap">
+										{% csrf_token %}
+										{% include "base_form.html" with form=grupo_form.agregar %}
+										<div class="align-self-end pb-4">
+											<button class="btn btn-agregar24 btn-block shadow-none" type="submit" name="{{grupo_form.agregar.nombre_form}}"></button>
+										</div>
+									</form>
+								{% endif %}
+							{% endif %}
+							<div class="table-forms">
+								{% for nombre_sub_form, sub_form in grupo_form.sub_forms.items %}
+									<div class="subform-titulo">
+										{% if sub_form.titulo %}
+											{{ sub_form.titulo.capitalize }}
+										{% elif sub_form.label %}
+											{{ sub_form.label.capitalize }}
+										{% else %}
+											{{ sub_form.objeto }}
+										{% endif %}
+									</div>
+
+									<div class="d-inline-flex">
+										{% if sub_form.actualizar %}
+											<form method="POST" class="form-inline">
+												{% csrf_token %}
+												{{ sub_form.actualizar.non_field_errors }}
+
+												{% for hidden_field in sub_form.actualizar.hidden_fields %}
+												    {{ hidden_field.errors }}
+												    {{ hidden_field }}
+												{% endfor %}
+
+												{% for field in sub_form.actualizar.visible_fields %}
+													{{ field.errors }}
+												    {% if field.field.widget.input_type == 'checkbox' %}
+												      {{ field }}
+												    {% else %}
+												      {% render_field field class="form-control form-control-sm" %}
+												    {% endif %}
+												    {{ field.help_text }}
+												{% endfor %}
+
+												{{ sub_form.actualizar.non_field_errors }}
+												<button class="btn btn-guardar16 btn-block shadow-none align-middle ml-2" type="submit" name="{{sub_form.actualizar.nombre_form}}"></button>
+											</form>
+										{% endif %}
+										{% if sub_form.eliminar %}
+											<form method="POST" class="form-inline">
+												{% csrf_token %}
+												{{ sub_form.eliminar }}
+												<button class="btn btn-minimizar16 btn-block shadow-none align-middle ml-2" type="submit" name="{{sub_form.eliminar.nombre_form}}"></button>
+											</form>
+										{% endif %}
+									</div>
+									
+									{% for nombre_sub_sub_form, sub_sub_form in sub_form.sub_forms.items %}
+								  		{% if sub_sub_form.fields %}
+								  			<div class="pl-4">
+								  				<form method="POST" class="d-flex flex-row flex-wrap">
+								  					{% csrf_token %}
+								  					{% include "base_form.html" with no_titulo=True form=sub_sub_form %}
+								  					{% if not sub_sub_form.disabled %}
+								  					<div class="align-self-end pb-4">
+								  						<button class="btn btn-guardar16 btn-block shadow-none ml-2" type="submit" name="{{sub_sub_form.nombre_form}}"></button>
+								  					</div>
+								  					{% endif %}
+								  				</form>
+								  			</div>
+								  			<div></div>
+								  		{% else %}
+								  			<div class="pl-4">
+								  				{{ sub_sub_form.titulo.capitalize }}
+								  			</div>
+
+								  			<div class="d-inline-flex">
+								  				{% if sub_sub_form.actualizar %}
+								  					<form method="POST" class="form-inline">
+								  						{% csrf_token %}
+								  						{{ sub_sub_form.actualizar.non_field_errors }}
+
+								  						{% for hidden_field in sub_sub_form.actualizar.hidden_fields %}
+								  							{{ hidden_field.errors }}
+								  							{{ hidden_field }}
+								  						{% endfor %}
+
+								  						{% for field in sub_sub_form.actualizar.visible_fields %}
+								  							{{ field.errors }}
+
+								  							{% if field.field.widget.input_type == 'checkbox' %}
+								  							 	{{ field }}
+								  							{% else %}
+								  							  	{% render_field field class="form-control form-control-sm" %}
+								  							{% endif %}
+								  							  		
+								  							{{ field.help_text }}
+								  						{% endfor %}
+
+								  						{{ sub_sub_form.actualizar.non_field_errors }}
+								  							  	
+								  						<button class="btn btn-guardar16 btn-block shadow-none align-middle ml-2" type="submit" name="{{sub_sub_form.actualizar.nombre_form}}"></button>
+								  					</form>
+								  				{% endif %}  				
+								  			</div>
+								  		{% endif %}
+								  	{% endfor %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+
+		<div id="id_grid_acciones">
+			{% if can_add %}
+			<div>
+				<a href="{% url 'productos:crear_'|add:modelo %}" ><img src="{% static 'img/iconos/32/agregar.png' %}"></a>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

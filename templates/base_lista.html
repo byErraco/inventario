@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base_contenido.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/tabla.css' %}">
+{% endblock %}
+
+{% block contenido %}
+	<div id="id_grid">
+		<div id="id_grid_titulo">
+			<div>
+				<img src="{% static 'img/iconos/48/lista.png' %}">
+				<span>{{ titulo|linebreaksbr }}</span>
+			</div>
+		</div>
+		<div id="id_grid_funcion">
+			<div id="id_borde_funcion">
+				{% if can_view %}{% include 'busqueda.html' %}{% endif %}
+				<div>
+					{% if reporte_url and can_view %}
+						<button name="excel" type="submit" class="btn-excel"></button>
+					{% endif %}
+
+					{% if can_add %}
+						<a id="id_a_crear" href="{% url app|add:':crear_'|add:modelo %}"><img src="{% static 'img/iconos/32/agregar.png' %}"></a>
+					{% endif%}
+				</div>
+			</div>
+		</div>
+		{% if can_view %}{% include 'resultado_busqueda.html' %}{% endif %}
+	</div>
+{% endblock %}
+
+{% block javascript-extra %}
+	<script type="text/javascript"> 
+		var url = "{{request.path}}"
+		var urlLista = url+"?page="
+		var urlProcesar = url
+		var csrftoken = "{{ csrf_token }}"
+	</script>
+{% endblock %}
