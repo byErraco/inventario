@@ -112,8 +112,9 @@ class UnidadInventarioFisicoForm(forms.Form):
 					if not cleaned_data.get('codigo_lote'):
 						raise forms.ValidationError({'codigo_lote': 'Este producto tiene seguimiento'})
 					if producto.seguimiento == 2:
-						if cantidad != 1 and cantidad != 0:
-							raise forms.ValidationError({'cantidad': 'La cantidad debe ser 1 o 0'})
+					#	if cantidad != 1 and cantidad != 0:
+					#		raise forms.ValidationError({'cantidad': 'La cantidad debe ser 1 o 0'})
+						pass
 				cleaned_data['producto'] = producto
 			else:
 				raise forms.ValidationError({'codigo_venta': 'No existe un producto con este código de venta'})

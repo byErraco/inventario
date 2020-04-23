@@ -48,6 +48,6 @@ class RegistroAdmin(admin.ModelAdmin):
 				return fields
 			return set(self.change_readonly_fields + self.readonly_fields)
 		return self.readonly_fields
-	    
+
 	class Meta:
 		abstract = True

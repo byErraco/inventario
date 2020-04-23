@@ -113,12 +113,21 @@ WSGI_APPLICATION = 'inventario.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
+DATABASESs= {
     'default': env.db(),
     'extra': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, env('SQLITE_NAME')),
         }
+}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'stpv',
+        'USER': 'postgres',
+        'PASSWORD': '123456',
+        'HOST' : 'localhost',
+    }
 }
 
 
